@@ -1,0 +1,31 @@
+﻿@model List<ResultViewMOdel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome, these are the results:</h1>
+    
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">FirstEmployee ID</th>
+      <th scope="col">SecondEmployee ID</th>
+      <th scope="col">Duration</th>
+      <th scope="col">ProjectID</th>
+    </tr>
+  </thead>
+  <tbody>
+            @foreach (var item in Model)
+            {
+                      <tr>
+                        <td> <div>@item.EmployeeId1</div> </td>
+                        <td> <div>@item.EmployeeId2</div> </td>
+                        <td> <div>@item.Days</div> </td>
+                        <td> <div>@item.ProjectId</div> </td>
+                     </tr>
+            }
+  </tbody>
+</table>
+</div>
+
