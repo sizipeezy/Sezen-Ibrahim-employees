@@ -23,9 +23,6 @@
         {
             this.emplRepo.SaveAllRecords(DatabaseRecords);
         }
-
-        /*Method which finding all all teams,
-         couples which have overlap and save them into List<Team> */
         public List<Team> FindAllTeamsWithOverLap()
         {
             List<DatabaseRecord> allDatabaseRecords = this.emplRepo.GetAllRecords();
@@ -53,7 +50,6 @@
             return teams;
         }
 
-        /** Method which calculating the total overlap and returning it */
         private long CalcOverlap(DatabaseRecord firstEmpl, DatabaseRecord secondEmpl)
         {
             DateTime periodStartDate =
@@ -64,7 +60,7 @@
                     firstEmpl.getDateTo() < (secondEmpl.getDateTo()) ?
                             firstEmpl.getDateTo() : secondEmpl.getDateTo();
 
-            //from 2019-01-01 to 2019-01-15 will return 14days in result not 15, which will accept for correct
+           
             return Math.Abs((periodEndDate - periodStartDate).Days);
         }
 
@@ -78,8 +74,6 @@
                     || firstEmpl.getDateTo() == secondEmpl.getDateFrom());
         }
 
-        /** method check and returning if the current team is already present in team collection
-         * (worked together under others projects) */
         private bool IsTeamPresent(Team team, long firstEmplId, long secondEmplId)
         {
             return (team.firstEmployeeId == firstEmplId
@@ -88,7 +82,7 @@
                     && team.secondEmployeeId == firstEmplId);
         }
 
-        //1) двойката служители, които най-дълго време са работили заедно по ОБЩИ ПРОЕКТИ
+       
         /** If the team is already present, it's total overlap duration will be updated with the new value,
          * otherwise will be create and add new team with the current data */
         private void UpdateTeam(List<Team> teams, DatabaseRecord firstEmpl, DatabaseRecord secondEmpl, long overlapDays, long projectId)
